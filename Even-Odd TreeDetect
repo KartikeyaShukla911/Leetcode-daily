@@ -1,0 +1,69 @@
+/*
+ * A binary tree is named Even-Odd if it meets the following conditions:
+
+The root of the binary tree is at level index 0, its children are at level index 1, their children are at level index 2, etc.
+For every even-indexed level, all nodes at the level have odd integer values in strictly increasing order (from left to right).
+For every odd-indexed level, all nodes at the level have even integer values in strictly decreasing order (from left to right).
+Given the root of a binary tree, return true if the binary tree is Even-Odd, otherwise return false.
+ * 
+ */
+
+public boolean isEvenOddTree(TreeNode root) {
+        if(root==null)
+            return true;
+        
+        Queue<TreeNode> q = new LinkedList();
+        q.add(root);
+        boolean odd = false;
+
+        if(root.val%2==0)
+            return false;
+
+        while(!q.isEmpty())
+        {
+            TreeNode temp = q.peek();
+            int size = q.size();
+            q.remove();
+            List<Integer> list = new ArrayList();
+            for(int i=0;i<size;i++)
+            {
+                list.add(temp.val);
+            }
+
+            if(odd==false)
+            {
+                int x,y;
+                for(x=0;x<list.size();x++)
+                {
+                    if(list.get(x)%2==0)
+                        return false;
+                    for(y=x+1;y<list.size();y++)
+                    {
+                        if(list.get(x) >= list.get(y))
+                            return false;
+                    }
+                }
+            }
+            else
+            {
+                int x,y;
+                for(x=0;x<list.size();x++)
+                {
+                    if(list.get(x)%2!=0)
+                        return false;
+                    for(y=x+1;y<list.size();y++)
+                    {
+                        if(list.get(x) <= list.get(y))
+                            return false;
+                    }
+                }
+            }
+            odd = !odd;
+            if(temp.left!=null)
+                q.add(temp.left);
+            
+            if(temp.right!=null)
+                q.add(temp.right);
+        }
+        return true;
+    }
