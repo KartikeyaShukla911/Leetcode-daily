@@ -1,0 +1,26 @@
+// https://leetcode.com/problems/rearrange-array-elements-by-sign/description/?envType=daily-question&envId=2024-02-14
+
+public int[] rearrangeArray(int[] nums) {
+        
+        int n = nums.length,i,j;
+
+        int pos[] = new int[n];
+        int neg[] = new int[n];
+        int ans[] = new int[n];
+
+        int c1=0,c2=0;
+        for(i=0;i<n;i++)
+        {
+            if(nums[i]<0)
+                neg[c2++] = nums[i];
+            else
+                pos[c1++]=nums[i];
+        }
+        i=0;j=0;c1=0;
+        while(c1<n)
+        {
+            ans[c1++] = pos[i++];
+            ans[c1++] = neg[j++]; 
+        }
+        return ans;
+    }
