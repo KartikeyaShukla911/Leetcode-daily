@@ -26,10 +26,16 @@ int max = arr.get(0);
 
  void heapifyUp(int index)
  {
-   int parent = n-1/2;
-   if(arr[parent] < arr[index])
+   while(index>=0)
    {
-        swap(arr,parent,index);
+        int parent = index-1 / 2;
+        if(arr.get(parent) < arr.get(index))
+        {
+            swap(arr,parent,index);
+            index =parent;
+        }
+        else
+            break;
    }
  }
 
@@ -58,5 +64,10 @@ int max = arr.get(0);
     if(index!=largest)
     {
         swap(arr,index,largest);
+        index = largest;
+    }
+    else
+    {
+        break;
     }
  }
