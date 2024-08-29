@@ -32,7 +32,7 @@ int max = arr.get(0);
         if(arr.get(parent) < arr.get(index))
         {
             swap(arr,parent,index);
-            index =parent;
+            index =parent;0
         }
         else
             break;
