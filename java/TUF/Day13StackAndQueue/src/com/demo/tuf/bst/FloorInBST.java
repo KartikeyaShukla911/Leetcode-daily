@@ -30,4 +30,6 @@ public class FloorInBST {
 		
 		return floor <=key && floor !=-1 ? floor : root.val;
 	}
+	
+	// bfs is better, since it doesn't require overhead recursion call stack
 }
